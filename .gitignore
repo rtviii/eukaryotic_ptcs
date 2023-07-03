@@ -1,3 +1,7 @@
 RIBETL_DATA/**
 **/ptc_venv
 ptc_venv
+ribctl/assets
+ribctl/assets/**
+**/__pycache__
+__pycache__

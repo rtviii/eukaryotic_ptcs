@@ -1,6 +1,7 @@
 import asyncio
 import json
 import math
+from pprint import pprint
 
 import prody as prd
 
@@ -113,7 +114,16 @@ def ptc_resdiues_get(rcsb_id: str, assembly_id: int = 0) -> tuple[list[Residue],
 
     R              = RibosomeAssets(rcsb_id)
     struct_profile = R.biopython_structure()
-    rna            = R.get_LSU_rRNA(assembly_id)
+    try:
+        rna            = R.get_LSU_rRNA(assembly_id)
+    except Exception as e:
+        print("Unfortunately, ", e)
+        rnas = R.profile().rnas
+        for rna in rnas:
+            if len(rna.entity_poly_seq_one_letter_code_can) > 2500:
+                pprint(rna)
+
+        exit(1)
     auth_asym_id   = rna.auth_asym_id
 
     chain3d: Chain = struct_profile.child_dict[assembly_id].child_dict[auth_asym_id]
