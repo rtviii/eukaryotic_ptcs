@@ -168,7 +168,7 @@ class RibosomeAssets():
         if rna == None:
             rna = self.get_rna_by_nomclass("28SrRNA", assembly)
         if rna == None:
-            raise Exception("No LSU rRNA found in structure")
+            raise Exception("No LSU rRNA identified by nomenclature")
         else:
             return rna
 
